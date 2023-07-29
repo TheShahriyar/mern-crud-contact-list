@@ -3,11 +3,14 @@ const bodyParser = require("body-parser");
 const morgan = require("morgan");
 const app = express();
 const xssClean = require("xss-clean");
+const contactRouter = require("./Router/contactRouter");
 
 app.use(xssClean());
 app.use(morgan("dev"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+app.use("/api/contacts", contactRouter);
 
 app.get("/", (req, res) => {
   res.status(200).send({
