@@ -28,6 +28,34 @@ const data = {
       address:
         "H-76, Road-87, Area: AreaName, City: cityName, state: stateName",
     },
+    {
+      name: "Ahmed Eesa",
+      email: "ahmed@gmail.com",
+      phone: "8979675",
+      address:
+        "H-76, Road-87, Area: AreaName, City: cityName, state: stateName",
+    },
+    {
+      name: "Sohel",
+      email: "sohel@gmail.com",
+      phone: "132548765",
+      address:
+        "H-76, Road-87, Area: AreaName, City: cityName, state: stateName",
+    },
+    {
+      name: "Shahriyar Sohel",
+      email: "shahriyar.sohel@gmail.com",
+      phone: "6546577566",
+      address:
+        "H-76, Road-87, Area: AreaName, City: cityName, state: stateName",
+    },
+    {
+      name: "Akter Mariam",
+      email: "akter@gmail.com",
+      phone: "345654675",
+      address:
+        "H-76, Road-87, Area: AreaName, City: cityName, state: stateName",
+    },
   ],
 };
 

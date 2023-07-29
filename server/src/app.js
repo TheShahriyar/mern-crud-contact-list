@@ -5,6 +5,7 @@ const app = express();
 const xssClean = require("xss-clean");
 const contactRouter = require("./Router/contactRouter");
 const seedRouter = require("./Router/seedRouter");
+const { errorResponse } = require("./Controller/responseController");
 
 app.use(xssClean());
 app.use(morgan("dev"));
