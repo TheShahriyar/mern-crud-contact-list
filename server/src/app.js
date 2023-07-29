@@ -4,6 +4,7 @@ const morgan = require("morgan");
 const app = express();
 const xssClean = require("xss-clean");
 const contactRouter = require("./Router/contactRouter");
+const seedRouter = require("./Router/seedRouter");
 
 app.use(xssClean());
 app.use(morgan("dev"));
@@ -11,6 +12,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use("/api/contacts", contactRouter);
+app.use("/api/seed", seedRouter);
 
 app.get("/", (req, res) => {
   res.status(200).send({
