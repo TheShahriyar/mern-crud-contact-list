@@ -6,7 +6,7 @@ const getAllContactList = async (req, res, next) => {
   try {
     const search = req.query.search || "";
     const page = Number(req.query.page) || 1;
-    const limit = Number(req.query.limit) || 4;
+    const limit = Number(req.query.limit) || null;
 
     const searchRegEx = new RegExp(".*" + search + ".*", "i");
 

@@ -3,10 +3,12 @@ const bodyParser = require("body-parser");
 const morgan = require("morgan");
 const app = express();
 const xssClean = require("xss-clean");
+var cors = require("cors");
 const contactRouter = require("./Router/contactRouter");
 const seedRouter = require("./Router/seedRouter");
 const { errorResponse } = require("./Controller/responseController");
 
+app.use(cors());
 app.use(xssClean());
 app.use(morgan("dev"));
 app.use(bodyParser.json());

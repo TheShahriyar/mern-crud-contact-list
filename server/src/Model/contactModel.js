@@ -1,5 +1,4 @@
 const { Schema, model } = require("mongoose");
-const { defaultImagePath } = require("../secret");
 
 const contactSchema = new Schema(
   {
@@ -31,12 +30,6 @@ const contactSchema = new Schema(
       type: String,
       required: [true, "Address is required"],
       minlength: [3, "Address can be minimum 3 character"],
-    },
-    image: {
-      type: Buffer,
-      required: [true, "Image is required"],
-      contentType: String,
-      default: defaultImagePath,
     },
   },
   { timestamps: true }
