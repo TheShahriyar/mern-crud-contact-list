@@ -8,7 +8,7 @@ type contactProps = {
   };
 };
 
-const UserRow = ({ contact }: contactProps) => {
+const UserRow = ({ contact, handleDeleteContact }: any) => {
   const { _id, name, phone, email, address } = contact;
   return (
     <>
@@ -34,6 +34,7 @@ const UserRow = ({ contact }: contactProps) => {
             <span className="sr-only">, {name}</span>
           </a>
           <a
+            onClick={() => handleDeleteContact(_id)}
             href="#"
             className="bg-red-400 text-white px-8 py-2 rounded transition-all duration-300 hover:bg-red-600"
           >

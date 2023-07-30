@@ -12,6 +12,20 @@ const Users = () => {
       .then((data) => setContacts(data.payload.contacts));
   }, []);
 
+  const handleDeleteContact = (id: String) => {
+    const proceed = window.confirm("Are you sure you want to delete?");
+    if (proceed) {
+      fetch(`http://localhost:3001/api/contacts/${id}`, {
+        method: "DELETE",
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          const remaining = contacts.filter((contact) => contact._id !== id);
+          setContacts(remaining);
+        });
+    }
+  };
+
   return (
     <>
       <div className="px-4 sm:px-6 lg:px-8">
@@ -75,7 +89,11 @@ const Users = () => {
                   </thead>
                   <tbody className="divide-y divide-gray-200 bg-white">
                     {contacts.map((contact, index) => (
-                      <UserRow key={index} contact={contact} />
+                      <UserRow
+                        key={index}
+                        contact={contact}
+                        handleDeleteContact={handleDeleteContact}
+                      />
                     ))}
                   </tbody>
                 </table>
