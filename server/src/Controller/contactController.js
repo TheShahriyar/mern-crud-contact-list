@@ -44,5 +44,20 @@ const getAllContactList = async (req, res, next) => {
     next(error);
   }
 };
+const handleDeleteContact = async (req, res, next) => {
+  try {
+    const id = req.params.id;
 
-module.exports = { getAllContactList };
+    const deletedUser = await Contact.findByIdAndDelete({ _id: id });
+
+    return successResponse(res, {
+      statusCode: 200,
+      message: "Contacts deleted successfully",
+      payload: deletedUser,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+module.exports = { getAllContactList, handleDeleteContact };
