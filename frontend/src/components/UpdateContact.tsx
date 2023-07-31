@@ -10,7 +10,7 @@ const UpdateContact = () => {
   const [address, setAddress] = useState("");
 
   useEffect(() => {
-    fetch(`http://localhost:3001/api/contacts/${id}`)
+    fetch(`https://mern-crud-contact-server.onrender.com/api/contacts/${id}`)
       .then((res) => res.json())
       .then((data) => {
         setName(data.payload.name);
@@ -30,7 +30,7 @@ const UpdateContact = () => {
 
     const contact = { name, email, phone, address };
 
-    fetch(`http://localhost:3001/api/contacts/${id}`, {
+    fetch(`https://mern-crud-contact-server.onrender.com/api/contacts/${id}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",

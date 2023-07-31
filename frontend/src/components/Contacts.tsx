@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 const Users = () => {
   const [contacts, setContacts] = useState([]);
 
-  const url = "http://localhost:3001/api/contacts";
+  const url = "https://mern-crud-contact-server.onrender.com/api/contacts";
 
   // Get all contacts
   useEffect(() => {
