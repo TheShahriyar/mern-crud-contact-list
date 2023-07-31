@@ -1,15 +1,5 @@
 import { Link } from "react-router-dom";
 
-type contactProps = {
-  contact: {
-    _id: String;
-    name: String;
-    email: String;
-    phone: String;
-    address: String;
-  };
-};
-
 const UserRow = ({ contact, handleDeleteContact }: any) => {
   const { _id, name, phone, email, address } = contact;
   return (

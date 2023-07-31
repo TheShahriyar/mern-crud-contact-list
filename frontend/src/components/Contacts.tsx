@@ -27,7 +27,7 @@ const Users = () => {
             alert(data.message);
           }
         });
-      const remaining = contacts.filter((contact) => contact._id !== id);
+      const remaining = contacts.filter((contact: any) => contact._id !== id);
       setContacts(remaining);
     }
   };
