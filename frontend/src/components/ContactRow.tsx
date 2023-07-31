@@ -25,14 +25,13 @@ const UserRow = ({ contact, handleDeleteContact }: any) => {
             Edit
             <span className="sr-only">, {name}</span>
           </Link>
-          <a
+          <button
             onClick={() => handleDeleteContact(_id)}
-            href="#"
             className="bg-red-400 text-white px-8 py-2 rounded transition-all duration-300 hover:bg-red-600"
           >
             Delete
             <span className="sr-only">, {name}</span>
-          </a>
+          </button>
         </td>
       </tr>
     </>
