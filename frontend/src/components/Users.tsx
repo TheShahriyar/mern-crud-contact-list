@@ -1,28 +1,28 @@
 import { useEffect, useState } from "react";
 import UserRow from "./UserRow";
+import { Link } from "react-router-dom";
 
 const Users = () => {
   const [contacts, setContacts] = useState([]);
 
   const url = "http://localhost:3001/api/contacts";
 
+  // Get all contacts
   useEffect(() => {
     fetch(url)
       .then((res) => res.json())
       .then((data) => setContacts(data.payload.contacts));
   }, []);
 
+  // Delete Contact
   const handleDeleteContact = (id: String) => {
     const proceed = window.confirm("Are you sure you want to delete?");
     if (proceed) {
-      fetch(`http://localhost:3001/api/contacts/${id}`, {
+      fetch(`${url}/${id}`, {
         method: "DELETE",
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          const remaining = contacts.filter((contact) => contact._id !== id);
-          setContacts(remaining);
-        });
+      }).then((res) => res.json());
+      const remaining = contacts.filter((contact) => contact._id !== id);
+      setContacts(remaining);
     }
   };
 
@@ -40,12 +40,13 @@ const Users = () => {
             </p>
           </div>
           <div className="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
-            <button
+            <Link
+              to="/add-contact"
               type="button"
               className="block rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
             >
               Add user
-            </button>
+            </Link>
           </div>
         </div>
         <div className="mt-8 flow-root">

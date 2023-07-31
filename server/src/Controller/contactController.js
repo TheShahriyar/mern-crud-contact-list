@@ -44,6 +44,35 @@ const getAllContactList = async (req, res, next) => {
     next(error);
   }
 };
+const handleCreateContact = async (req, res, next) => {
+  try {
+    const { name, phone, email, address } = req.body;
+
+    const contactExistEmail = await Contact.exists({ email });
+    if (contactExistEmail) {
+      throw createError(409, `Contact already exist with this email`);
+    }
+    const contactExistPhone = await Contact.exists({ phone });
+    if (contactExistPhone) {
+      throw createError(409, `Contact already exist with this phone number`);
+    }
+
+    const contact = await Contact.create({
+      name,
+      phone,
+      email,
+      address,
+    });
+
+    return successResponse(res, {
+      statusCode: 200,
+      message: "Contacts created successfully",
+      payload: contact,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
 const handleDeleteContact = async (req, res, next) => {
   try {
     const id = req.params.id;
@@ -60,4 +89,8 @@ const handleDeleteContact = async (req, res, next) => {
   }
 };
 
-module.exports = { getAllContactList, handleDeleteContact };
+module.exports = {
+  getAllContactList,
+  handleDeleteContact,
+  handleCreateContact,
+};
