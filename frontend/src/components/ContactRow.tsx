@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 type contactProps = {
   contact: {
     _id: String;
@@ -26,13 +28,13 @@ const UserRow = ({ contact, handleDeleteContact }: any) => {
           {address}
         </td>
         <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6 space-x-4">
-          <a
-            href="#"
+          <Link
+            to={`/update-contact/${_id}`}
             className="bg-orange-400 text-white px-8 py-2 rounded transition-all duration-300 hover:bg-red-600"
           >
             Edit
             <span className="sr-only">, {name}</span>
-          </a>
+          </Link>
           <a
             onClick={() => handleDeleteContact(_id)}
             href="#"

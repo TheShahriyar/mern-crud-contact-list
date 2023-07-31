@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import UserRow from "./UserRow";
+import UserRow from "./ContactRow";
 import { Link } from "react-router-dom";
 
 const Users = () => {
@@ -20,7 +20,13 @@ const Users = () => {
     if (proceed) {
       fetch(`${url}/${id}`, {
         method: "DELETE",
-      }).then((res) => res.json());
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.success) {
+            alert(data.message);
+          }
+        });
       const remaining = contacts.filter((contact) => contact._id !== id);
       setContacts(remaining);
     }
@@ -32,20 +38,23 @@ const Users = () => {
         <div className="sm:flex sm:items-center">
           <div className="sm:flex-auto">
             <h1 className="text-base font-semibold leading-6 text-gray-900">
-              Users: {contacts.length}
+              Total Contacts: {contacts.length}
             </h1>
             <p className="mt-2 text-sm text-gray-700">
-              A list of all the users in your account including their name,
-              title, email and role.
+              A list of all the contacts including their name, phone, email and
+              address.
+            </p>
+            <p className="mt-2 text-sm text-gray-700">
+              You can add, update and delete contact.
             </p>
           </div>
           <div className="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
             <Link
               to="/add-contact"
               type="button"
-              className="block rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+              className="block rounded-md bg-indigo-600 px-8 py-4 text-center text-base font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
             >
-              Add user
+              Add Contact
             </Link>
           </div>
         </div>

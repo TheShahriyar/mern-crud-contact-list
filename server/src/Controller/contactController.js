@@ -73,6 +73,52 @@ const handleCreateContact = async (req, res, next) => {
     next(error);
   }
 };
+
+const handleUpdateContact = async (req, res, next) => {
+  try {
+    const userID = req.params.id;
+
+    const contact = await Contact.findById(userID);
+
+    const updateOptions = { new: true, runValidators: true, context: "query" };
+    let updates = {};
+
+    for (const key in req.body) {
+      if (["name", "email", "phone", "address"].includes(key)) {
+        updates[key] = req.body[key];
+      }
+    }
+    const updatedContact = await Contact.findByIdAndUpdate(
+      userID,
+      updates,
+      updateOptions
+    );
+
+    return successResponse(res, {
+      statusCode: 200,
+      message: "Contacts created successfully",
+      payload: updatedContact,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+const handleGetContact = async (req, res, next) => {
+  try {
+    const userID = req.params.id;
+
+    const contact = await Contact.findById(userID);
+
+    return successResponse(res, {
+      statusCode: 200,
+      message: "Contacts created successfully",
+      payload: contact,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
 const handleDeleteContact = async (req, res, next) => {
   try {
     const id = req.params.id;
@@ -93,4 +139,6 @@ module.exports = {
   getAllContactList,
   handleDeleteContact,
   handleCreateContact,
+  handleUpdateContact,
+  handleGetContact,
 };

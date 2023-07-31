@@ -1,7 +1,8 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Homepage from "./pages/Homepage";
 import AddContact from "./components/AddContact";
-import Users from "./components/Users";
+import Users from "./components/Contacts";
+import UpdateContact from "./components/UpdateContact";
 
 function App() {
   return (
@@ -15,7 +16,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Users />} />
             <Route path="/add-contact" element={<AddContact />} />
-            <Route path="/update-contact" element={<AddContact />} />
+            <Route path="/update-contact/:id" element={<UpdateContact />} />
           </Routes>
         </BrowserRouter>
       </div>
